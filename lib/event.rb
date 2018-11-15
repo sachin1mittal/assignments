@@ -4,6 +4,8 @@ require 'json'
 class Event
   attr_accessor :score
 
+  DEFAULT_SCORE = 1
+
   SCORES = {
     'IssuesEvent' => 7,
     'IssueCommentEvent' => 6,
@@ -13,8 +15,10 @@ class Event
     'CreateEvent' => 2
   }
 
+  SCORES.default = DEFAULT_SCORE
+
   def initialize(type)
-    self.score = SCORES[type] || 1
+    self.score = SCORES[type]
   end
 
   def self.fetch(profile_url)
